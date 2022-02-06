@@ -1,0 +1,84 @@
+<?php
+session_start();
+require_once'baza.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cosmina Alupoaei</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Alex Brush' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Grand Hotel' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+<?php
+  if($_SESSION['role'] === 'admin' )  {
+    echo "<script type='text/javascript'>alert('Te-ai conectat ca ADMIN!');</script>";
+  }
+  if($_SESSION['role'] === 'user' )  {
+    echo "<script type='text/javascript'>alert('Te-ai conectat ca USER!');</script>";
+  }
+?>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Cosmina Alupoaei</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="produse.html">Produse</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<h1 class=site-title>Vintage shop</h1>
+<h3 class=site-subtitle>Cine suntem noi si ce inseamna stilul vintage?</h3>
+<div class=site-format>
+<p>Magazin online de haine și accesorii vintage, retro și second hand. Rochii de seară, bavareze, fuste, sacouri, bluze, pantaloni, cămăsi, costume, eșarfe, kaftan, cașmir, mătase naturală, bijuterii, genți, curele, piele naturală, piele șarpe.</p>
+<p>Stilul vintage se confunda deseori cu stilul retro, pentru ca ambele apartin esteticii secolului trecut, dar nu acelorasi decenii. Astfel, stilul vintage poate cuprinde o plaja foarte larga de piese de mobilier si obiecte decorative realizate intre anii 1960 si 1990, iar stilul retro se refera la elementele de design interior din prima jumatate a secolului XX. Intr-o amenajare in stil vintage putem avea atat mobila vintage din anii ‘70, cat si obiecte decorative vintage din anii ‘90. </p>
+<p>Ce culori predomină în interioarele vintage? Sunt multe culori specifice în amenajări interi-oare stil vintage. Cele mai populare sunt verdele, portocaliul, roșul, galbenul și albastrul. Rozul și albul sunt de evitat. Pereții sunt fie în culori pastelate, fie acoperiți cu tapet deschis, cu modele dinamice. Podeaua este executată de obicei din parchet laminat de culoare de-schisă, sau mai rar, din gresie. O mică parte a podelei poate fi acoperită de un covor mic, cu model.</p>
+<p>Prin ce se caracterizează mobila în stil vintage? Aceasta trebuie să fie mai veche de 25 de ani, cu o istorie foarte bogată. Dar poți folosi și piese de mobilier noi, cu efect de patină. Obiecte perfecte pentru interioarele în stilul vintage poți găsi în propriul pod, la târgurile de antichități, precum și în magazinele de mobilă cu piese care aparțin stilurilor din anii ’50, ’60 și ’70.</p>
+<p>Un important element al interioarelor îl constituie elemente decorative. Ce fel de ornamente se potrivesc cel mai bine într-un interior vintage? Acest stil este caracterizat de eclectism. Își găsesc aici locul atât obiectele cumpărate, cât și cele realizate manual. Cel mai important este ca designerul să aleagă cu grijă elementele decorative care vor sublinia caracterul interiorului. Acestea trebuie să fie realizate din lemn, piele, metal și ceramică.</p>
+</div>
+</body>
+<?php
+if($_SESSION['role'] === 'admin')
+{
+  $query_users="SELECT * FROM prisacaru_utilizatori";
+  $result_users = mysqli_query($con,$query_users);
+
+    echo "<table class='table'>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Role</th>
+    </tr>";
+    while($row = mysqli_fetch_assoc($result_users)) {
+      echo "
+      <tr>
+        <td>$row[id]</td>
+        <td>$row[username]</td>
+        <td>$row[role]</td>
+      </tr>";
+    }
+    echo "</table>";
+}
+?>
+<footer class="footer">
+  <h3 style="margin-top:0;">Ne puteti gasi:</h3>
+<a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+<a href="https://twitter.com/login?lang=ro" class="fa fa-twitter"></a>
+<a href="https://www.google.com/" class="fa fa-google"></a>
+<a href="https://ro.linkedin.com/" class="fa fa-linkedin"></a>
+<a href="https://www.youtube.com/" class="fa fa-youtube"></a>
+<a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+</footer>
+</html>
