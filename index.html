@@ -18,14 +18,6 @@ require_once'baza.php';
 
 </head>
 <body>
-<?php
-  if($_SESSION['role'] === 'admin' )  {
-    echo "<script type='text/javascript'>alert('Te-ai conectat ca ADMIN!');</script>";
-  }
-  if($_SESSION['role'] === 'user' )  {
-    echo "<script type='text/javascript'>alert('Te-ai conectat ca USER!');</script>";
-  }
-?>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -49,29 +41,7 @@ require_once'baza.php';
 <p>Un important element al interioarelor îl constituie elemente decorative. Ce fel de ornamente se potrivesc cel mai bine într-un interior vintage? Acest stil este caracterizat de eclectism. Își găsesc aici locul atât obiectele cumpărate, cât și cele realizate manual. Cel mai important este ca designerul să aleagă cu grijă elementele decorative care vor sublinia caracterul interiorului. Acestea trebuie să fie realizate din lemn, piele, metal și ceramică.</p>
 </div>
 </body>
-<?php
-if($_SESSION['role'] === 'admin')
-{
-  $query_users="SELECT * FROM prisacaru_utilizatori";
-  $result_users = mysqli_query($con,$query_users);
 
-    echo "<table class='table'>
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Role</th>
-    </tr>";
-    while($row = mysqli_fetch_assoc($result_users)) {
-      echo "
-      <tr>
-        <td>$row[id]</td>
-        <td>$row[username]</td>
-        <td>$row[role]</td>
-      </tr>";
-    }
-    echo "</table>";
-}
-?>
 <footer class="footer">
   <h3 style="margin-top:0;">Ne puteti gasi:</h3>
 <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
